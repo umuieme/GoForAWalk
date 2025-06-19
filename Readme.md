@@ -24,28 +24,30 @@ Local Storage: Core Data, UserDefaults
 
 ### Project Structure Sample
 
+<pre>
 WalkingBuddy/
 ├── App/
-│   └── WalkingBuddyApp.swift
+│   └── WalkingBuddyApp.swift          # Entry point of the SwiftUI app
 ├── Core/
-│   ├── Components/
-│   ├── Extensions/
-│   └── Utils/
+│   ├── Components/                    # Reusable UI components
+│   ├── Extensions/                    # Shared extensions for various types
+│   └── Utils/                         # Core utility functions
 ├── Models/
-│   ├── User.swift
-│   └── Event.swift
-├── Extensions
-│   └── StringExtension.swift
+│   ├── User.swift                     # User model
+│   └── Event.swift                    # Event model
+├── Extensions/
+│   └── StringExtension.swift          # String-related extension methods
 ├── Features/
 │   ├── Common/
-│       └── PrimaryButton.swift
+│   │   └── PrimaryButton.swift        # Common styled button component
 │   ├── Authentication/
-│   │   ├── ViewModels/
-│   │   └── Views/
+│   │   ├── ViewModels/                # Auth-related view models
+│   │   └── Views/                     # Auth-related SwiftUI views
 │   └── WalkEvents/
-│       ├── ViewModels/
-│       └── Views/
+│       ├── ViewModels/                # Walk event-related view models
+│       └── Views/                     # Walk event-related SwiftUI views
 ├── Services/
-│   ├── ApiHelper.swift
-│   └── AuthService.swift
-└── Utils/
+│   ├── ApiHelper.swift                # Network abstraction layer
+│   └── AuthService.swift              # Authentication service logic
+└── Utils/                             # Additional utilities
+</pre>
