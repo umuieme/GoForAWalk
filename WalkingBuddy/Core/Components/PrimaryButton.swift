@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct PrimaryButton: View {
+    let title: String
+    let action: () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Text("Login")
+                .frame(maxWidth: .infinity)
+
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(.green)
+
     }
 }
 
 #Preview {
-    PrimaryButton()
+    PrimaryButton(title: "Save") {
+
+    }
 }
