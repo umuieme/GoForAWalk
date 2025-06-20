@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var authViewModel = AuthViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        Group {
+            switch authViewModel.authState {
+            case .uninitialized:
+                SplashScreen()
+            case .login:
+                LoginScreen()
+            case .register:
+                RegisterScreen()
+            case .dashboard:
+                HomeScreen()
+            }
+        
         }
-        .padding()
+        .environmentObject(authViewModel)
+        
     }
 }
 

@@ -6,18 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		AF824B222E04C0DB0088838F /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = AF824B212E04C0D60088838F /* Readme.md */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		AF824B212E04C0D60088838F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		AFC94B832E021706009EA8AD /* WalkingBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AF824B4B2E04C7090088838F /* Exceptions for "WalkingBuddy" folder in "WalkingBuddy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/Extensions/Readme.md,
+			);
+			target = AFC94B822E021706009EA8AD /* WalkingBuddy */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AFC94B852E021706009EA8AD /* WalkingBuddy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AF824B4B2E04C7090088838F /* Exceptions for "WalkingBuddy" folder in "WalkingBuddy" target */,
+			);
 			path = WalkingBuddy;
 			sourceTree = "<group>";
 		};
@@ -115,7 +124,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF824B222E04C0DB0088838F /* Readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
