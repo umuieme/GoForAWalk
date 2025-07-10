@@ -19,6 +19,8 @@ struct ContentView: View {
                 LoginScreen()
             case .register:
                 RegisterScreen()
+            case .profileSetup:
+                ProfileSetupScreen()
             case .dashboard:
                 HomeScreen()
             }

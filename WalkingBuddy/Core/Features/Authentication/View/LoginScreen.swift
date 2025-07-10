@@ -31,10 +31,9 @@ struct LoginScreen: View {
                     title: "Password",
                     error: $loginViewModel.passwordError
                 )
-                Text("Forget Password?")
-                    .foregroundStyle(.blue)
             }
-
+            Text("Forget Password?")
+                .foregroundStyle(.blue)
             PrimaryButton(title: "Login") {
                 loginViewModel.loginWithEmailPassword()
             }
