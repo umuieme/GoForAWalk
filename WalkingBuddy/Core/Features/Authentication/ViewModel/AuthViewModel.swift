@@ -11,13 +11,14 @@ enum AuthState {
     case uninitialized
     case login
     case register
+    case profileSetup
     case dashboard
 }
 
-class AuthViewModel : ObservableObject {
-    
-    @Published var authState : AuthState = .login
-    
+class AuthViewModel: ObservableObject {
+
+    @Published var authState: AuthState = .login
+
     func onLoginSuccess() {
         authState = .dashboard
     }
@@ -26,4 +27,12 @@ class AuthViewModel : ObservableObject {
         authState = .register
     }
     
+    func onShowLogin(){
+        authState = .login
+    }
+
+    func onRegisterSuccess() {
+        authState = .profileSetup
+    }
+
 }

@@ -9,7 +9,32 @@ import SwiftUI
 
 struct HomeScreen: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TabView {
+                Tab("Home", systemImage: "house") {
+                    HomeTab()
+                }
+
+                Tab("My Walks", systemImage: "figure.walk") {
+                    Text("My Events")
+                }
+
+
+                Tab("Create Walks", systemImage: "plus.app.fill") {
+                    Text("Create")
+                }
+                
+                Tab("Message", systemImage: "message.fill") {
+                    Text("Message")
+                }
+                
+                Tab("Profile", systemImage: "person.fill") {
+                    Text("Create")
+                }
+                
+                
+            }
+        }
     }
 }
 
