@@ -8,87 +8,81 @@
 import SwiftUI
 
 struct CreateEventScreen: View {
-    
+
     @StateObject private var createEventViewModel = CreateEventViewModel()
 
     var body: some View {
-        Form{
-            
-            Section("Cover Photo") {
+        ScrollView {
+            VStack(spacing: 20) {
+                // Header
+                Text("Create a New Walk")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                // Cover Photo
                 ImagePicker(selectedImage: $createEventViewModel.image)
-                    .frame(maxWidth: .infinity)
-                    
-            }
-            AppTextField(text: $createEventViewModel.title, title: "Event Title")
-            
-            Section("Date and Time") {
-                DatePicker(
-                    "Start",
-                    selection: $createEventViewModel.startDate,
-                    displayedComponents: [.date, .hourAndMinute]
+
+                // Event Title
+                AppTextField(
+                    text: $createEventViewModel.title,
+                    title: "Event Title",
+                    placeholder: "e.g., Morning Lakeside Walk"
                 )
-               
 
-            }
-            Section("The Route") {
-                HStack {
-                    Text("Meeting point")
-                    Spacer()
-                    Image(systemName: "mappin")
-                }
-                .buttonBorderShape(.roundedRectangle)
-                
-                HStack {
-                    Text("End point")
-                    Spacer()
-                    Image(systemName: "mappin")
-                }
-                .buttonBorderShape(.roundedRectangle)
-                
-            }
-            
-            Section("Event Details") {
-                TextField("",text: $createEventViewModel.detail, axis: .vertical)
-                
-                    .lineLimit(3...5)
-            }
-            
-            Section ("Pace") {
-                Button {
-                    createEventViewModel.isPacePickerShowing = true
-                } label: {
-                    Text("Select your walking pace")
-                }
-                .sheet(isPresented: $createEventViewModel.isPacePickerShowing) {
-                    NavigationStack{
-                        VStack{
-                            Picker(selection: $createEventViewModel.pace) {
-                                ForEach(WalkingPace.allCases) { walkingPace in
-                                    Text(walkingPace.rawValue).tag(walkingPace)
-                                    
-                                }
-                            } label: {
-                                Text("Your walking pace")
-                            }
-                            .pickerStyle(.inline)
-                            .presentationDetents([.fraction(0.25)])
-                        }
-                    }
-
-
+                // Date and Time
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Date and Time")
+                        .font(.headline)
+                    DatePicker(
+                        "Start Time",
+                        selection: $createEventViewModel.startDate,
+                        displayedComponents: [.date, .hourAndMinute]
+                    )
+                    .datePickerStyle(.compact)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
                 }
 
+                // Route Section
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("The Route")
+                        .font(.headline)
+                    LocationField(
+                        title: "Meeting Point",
+                        icon: "mappin.and.ellipse",
+                        location: $createEventViewModel.startPoint
+                    )
+                    LocationField(
+                        title: "End Point",
+                        icon: "mappin.slash",
+                        location: $createEventViewModel.destination)
+                }
+
+                // Event Details
+                AppTextField(
+                    text: $createEventViewModel.detail,
+                    title: "Event Details",
+                    placeholder: "Describe your walk...",
+                    lineLimit: 4
+                )
+
+                PaceSelector(selectedPace: $createEventViewModel.pace)
+
+                PrimaryButton(title: "Create Event") {
+                    // Action to create the event
+                }
+                .padding(.top)
             }
-            
-            PrimaryButton(title: "Create an event") {
-                
-            }
-            
-            
+            .padding()
         }
-        .navigationTitle("Create an Event")
-        .navigationBarTitleDisplayMode(.inline)
-        
+        .background(
+            LinearGradient(
+                colors: [Color.blue.opacity(0.1), Color.white],
+                startPoint: .top, endPoint: .bottom)
+        )
+        .navigationBarHidden(true)
     }
 }
 
@@ -96,5 +90,5 @@ struct CreateEventScreen: View {
     NavigationStack {
         CreateEventScreen()
     }
-        
+
 }

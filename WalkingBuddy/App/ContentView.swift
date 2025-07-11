@@ -16,7 +16,7 @@ struct ContentView: View {
             case .uninitialized:
                 SplashScreen()
             case .login:
-                LoginScreen()
+                HomeScreen()
             case .register:
                 RegisterScreen()
             case .profileSetup:

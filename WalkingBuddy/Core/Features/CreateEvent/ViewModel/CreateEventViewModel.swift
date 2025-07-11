@@ -18,6 +18,8 @@ class CreateEventViewModel : ObservableObject {
     @Published var pace : WalkingPace?
     @Published var isPublic = false
     @Published var isPacePickerShowing = false
+    @Published var startPoint : LocationData?
+    @Published var destination : LocationData?
 
 }
 
