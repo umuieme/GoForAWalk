@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppTextField: View {
     let text: Binding<String>
-    let title: String?
+    var title: String? = nil
     var error: Binding<String>? = nil
     let isPassword: Bool = true
     var body: some View {

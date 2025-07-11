@@ -21,7 +21,7 @@ struct HomeScreen: View {
 
 
                 Tab("Create Walks", systemImage: "plus.app.fill") {
-                    Text("Create")
+                        CreateEventScreen()
                 }
                 
                 Tab("Message", systemImage: "message.fill") {
