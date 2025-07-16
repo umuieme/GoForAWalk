@@ -8,32 +8,69 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @State var selectedTab: Tab = .home
+    @State var isCreatingWalk: Bool = false
     var body: some View {
-        VStack {
-            TabView {
-                Tab("Home", systemImage: "house") {
-                    HomeTab()
+        NavigationStack {
+            VStack {
+                VStack {
+                    switch selectedTab {
+                    case .home:
+                        HomeTab()
+                    case .myWalks:
+                        MyWalkTab()
+                    case .createWalk:
+                        Text("")
+                    case .message:
+                        Text("Message")
+                    case .profile:
+                        Text("Profile")
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                HStack {
+                    ForEach(Tab.allCases, id: \.self) { tab in
+                        
+                        
+                        TabButton(tab: tab, isSelected: selectedTab == tab ) {
+                            if(tab == .createWalk) {
+                                isCreatingWalk = true
+                            } else {
+                                selectedTab = tab
 
-                Tab("My Walks", systemImage: "figure.walk") {
-                    Text("My Events")
+                            }
+                        }
+                        .selectionDisabled()
+                    }
+                    
+                    
                 }
-
-
-                Tab("Create Walks", systemImage: "plus.app.fill") {
-                    Text("Create")
-                }
-                
-                Tab("Message", systemImage: "message.fill") {
-                    Text("Message")
-                }
-                
-                Tab("Profile", systemImage: "person.fill") {
-                    Text("Create")
-                }
-                
-                
+                .padding()
+                .background(.thinMaterial)
+                .cornerRadius(15)
+                .shadow(radius: 5)
+                .padding(.horizontal)
             }
+            .navigationDestination(isPresented: $isCreatingWalk) {
+                CreateEventScreen()
+            }
+        }
+    }
+}
+
+struct TabButton: View {
+    let tab: Tab
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(
+                systemName: tab.icon
+            )
+            .font(.system(size: 24))
+            .foregroundColor(isSelected ? .blue : .gray)
+            .frame(maxWidth: .infinity)
         }
     }
 }

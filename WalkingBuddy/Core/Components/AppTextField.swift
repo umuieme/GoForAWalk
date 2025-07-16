@@ -8,49 +8,76 @@
 import SwiftUI
 
 struct AppTextField: View {
-    let text: Binding<String>
-    let title: String?
+    @Binding var text: String
+
+    var title: String? = nil
+    var placeholder: String? = nil
+    var lineLimit: Int? = nil
+    var isPassword: Bool = false
     var error: Binding<String>? = nil
-    let isPassword: Bool = true
+
+    @State private var isFocused = false
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: 8) {
             if title != nil {
                 Text(title!)
                     .font(.headline)
-                    .foregroundStyle(.black.opacity(0.7))
-                    .padding(0)
             }
-            if(isPassword){
-                SecureField(text: text) {
-                    Text(title ?? "")
-                        .font(.title2)
-                }
-                .padding(0)
-                .frame(maxWidth: .infinity)
-                .textFieldStyle(.roundedBorder)
-                .font(.title3)
-            } else {
-                TextField(text: text) {
-                    Text(title ?? "")
-                        .font(.title2)
-                }
-                .padding(0)
-                .frame(maxWidth: .infinity)
-                .textFieldStyle(.roundedBorder)
-                .font(.title3)
-            }
-            if (error != nil && !error!.wrappedValue.isEmpty) {
-                Text(error!.wrappedValue)
-                    .foregroundStyle(.red)
-                    .font(.caption)
+            HStack {
+                if isPassword {
+                    SecureField(placeholder ?? "", text: $text)
+                        .padding(.vertical, 12)
+                        .font(.body)
+                } else if lineLimit != nil {
+                    TextEditor(text: $text)
 
+                        .padding(.vertical, 4)
+                        .frame(height: CGFloat(lineLimit! * 22))
+                        .scrollContentBackground(.hidden)
+                } else {
+                    TextField(placeholder ?? "", text: $text)
+                        .padding(.vertical, 12)
+                        .font(.body)
+                }
             }
+            .padding(.horizontal)
+            .background(Color(.systemGray6))
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(isFocused ? .blue : .clear, lineWidth: 2)
+            )
+
+            if error != nil && !error!.wrappedValue.isEmpty {
+                Text(error!.wrappedValue)
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
+
         }
     }
 }
 
 #Preview {
-    AppTextField(
-        text: .constant(""), title: "Title", error: .constant("Error")
-    )
+    VStack {
+        AppTextField(
+            text: .constant(""),
+            title: "Title",
+            error: .constant("Error")
+        )
+        AppTextField(
+            text: .constant(""),
+            title: "Title",
+            lineLimit: 4,
+            error: .constant("Error")
+        )
+        AppTextField(
+            text: .constant("asd"),
+            title: "Event Details",
+            placeholder: "Describe your walk...",
+            lineLimit: 4
+        )
+        AppTextField(text: .constant("asd"), isPassword: true)
+    }
 }

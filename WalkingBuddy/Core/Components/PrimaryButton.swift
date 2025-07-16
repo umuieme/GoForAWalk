@@ -12,7 +12,7 @@ struct PrimaryButton: View {
     let action: () -> Void
     var body: some View {
         Button(action: action) {
-            Text("Login")
+            Text(title)
                 .frame(maxWidth: .infinity)
 
         }
