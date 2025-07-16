@@ -20,6 +20,40 @@ class CreateEventViewModel : ObservableObject {
     @Published var isPacePickerShowing = false
     @Published var startPoint : LocationData?
     @Published var destination : LocationData?
+    
+    @Published var titleError : String?
+    @Published var startDateError : String?
+    @Published var detailError : String?
+    @Published var paceError : String?
+    @Published var startPointError : String?
+    @Published var destinationError : String?
+    
+    
+    
+    func validate() -> Bool {
+        var hasError = false
+        if title.isEmpty {
+            titleError = "Title is required"
+            hasError = true
+        }
+        if detail.isEmpty {
+            detailError = "Detail is required"
+            hasError = true
+        }
+        if startPoint == nil {
+            startPointError = "Start point is required"
+            hasError = true
+        }
+        if destination == nil {
+            destinationError = "Destination is required"
+            hasError = true
+        }
+        if pace == nil {
+            paceError = "Pace is required"
+            hasError = true
+        }
+        return hasError
+    }
 
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateEventScreen: View {
 
     @StateObject private var createEventViewModel = CreateEventViewModel()
-
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -37,8 +37,10 @@ struct CreateEventScreen: View {
                     DatePicker(
                         "Start Time",
                         selection: $createEventViewModel.startDate,
+                        in: Date()...,
                         displayedComponents: [.date, .hourAndMinute]
                     )
+                    
                     .datePickerStyle(.compact)
                     .padding()
                     .background(Color(.systemGray6))
@@ -71,7 +73,7 @@ struct CreateEventScreen: View {
                 PaceSelector(selectedPace: $createEventViewModel.pace)
 
                 PrimaryButton(title: "Create Event") {
-                    // Action to create the event
+                    dismiss()
                 }
                 .padding(.top)
             }
@@ -82,7 +84,6 @@ struct CreateEventScreen: View {
                 colors: [Color.blue.opacity(0.1), Color.white],
                 startPoint: .top, endPoint: .bottom)
         )
-        .navigationBarHidden(true)
     }
 }
 
