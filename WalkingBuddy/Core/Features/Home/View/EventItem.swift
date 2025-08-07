@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct EventItem: View {
+    let event: Event
     var body: some View {
         HStack(alignment: .top, spacing: 4) {
-            AsyncImage(url: URL(string: "https://images.pexels.com/photos/1009355/pexels-photo-1009355.jpeg")) { image in
+            AsyncImage(url: event.getImagePreviewUrl()) { image in
                 image.resizable()
                     .frame(width: 150, height: 120)
             } placeholder: {
                 ProgressView()
             }
+            .frame(width: 150, height: 120)
+            .padding(.trailing, 4)
 
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("July 1, 10:00 PM")
+                Text(event.startDate.formatted(.dateTime.day().month().year()))
                     .font(.subheadline)
                     
-                Text("Morning Stroll in Central Park")
+                Text(event.title)
                     .font(.headline)
-                Text("Join us for a refreshing walk through Central Park. Meet new people and enjoy the scenery. Join us for a refreshing walk through Central Park. Meet new people and enjoy the scenery. Join us for a refreshing walk through Central Park. Meet new people and enjoy the scenery.")
+                Text(event.getUserName())
+                    .font(.subheadline)
+                    
+                Text(event.detail ?? "No details available")
                     .lineLimit(3)
                 
             }
@@ -33,5 +39,5 @@ struct EventItem: View {
 }
 
 #Preview {
-    EventItem()
+    EventItem(event: Dummy.eventList().first!)
 }

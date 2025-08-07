@@ -25,13 +25,13 @@ class Dummy {
             Event(
                 id: "1",
                 title: "High Park Sunset Stroll",
-                image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
+                imageId: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(3600 * 8),  // Today at ~8:26 AM
                 detail:
                     "A beautiful walk to catch the sunset from the best viewpoint in the park. We'll walk the main loop. All are welcome!",
                 pace: .casualStroll,
                 isPublic: true,
-                startPoint: LocationData(
+                startingPoint: LocationData(
                     latitude: 43.6465, longitude: -79.4637,
                     name: "High Park Main Entrance"),
                 endPoint: LocationData(
@@ -42,13 +42,13 @@ class Dummy {
             Event(
                 id: "2",
                 title: "Waterfront Fitness Walk",
-                image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
+                imageId: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(3600 * 24 * 2),  // In 2 days
                 detail:
                     "Let's get our steps in with a brisk walk along the waterfront. We'll meet at the Harbourfront Centre and walk towards the beaches.",
                 pace: .powerWalk,
                 isPublic: false,
-                startPoint: LocationData(
+                startingPoint: LocationData(
                     latitude: 43.6387, longitude: -79.3823,
                     name: "Harbourfront Centre South Entrance"),
                 endPoint: LocationData(
@@ -58,13 +58,13 @@ class Dummy {
             Event(
                 id: "3",
                 title: "Don Valley Trail Run",
-                image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
+                imageId: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(3600 * 24 * 7),
                 detail:
                     "A challenging but rewarding trail run through the Don Valley. Be prepared for hills and uneven terrain. Let's meet at the Evergreen Brick Works entrance.",
                 pace: .run,
                 isPublic: false,
-                startPoint: LocationData(
+                startingPoint: LocationData(
                     latitude: 43.6841, longitude: -79.3653,
                     name: "Evergreen Brick Works Welcome Centre"),
                 endPoint: LocationData(
@@ -78,13 +78,13 @@ class Dummy {
             Event(
                 id: "4",
                 title: "Riverdale Park Dog Walk",
-                image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
+                imageId: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(-3600 * 24 * 3),  // 3 days ago
                 detail:
                     "A fun and casual walk for all dog lovers and their furry friends. We met at the east park entrance.",
                 pace: .casualStroll,
                 isPublic: true,
-                startPoint: LocationData(
+                startingPoint: LocationData(
                     latitude: 43.6730, longitude: -79.3553,
                     name: "Riverdale Park East Lookout"),
                 endPoint: LocationData(
@@ -96,12 +96,12 @@ class Dummy {
             Event(
                 id: "5",
                 title: "Urban Exploration: Queen's Park",
-                image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
+                imageId: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(-3600 * 24 * 10),
                 detail: nil,  // Example with no detail
                 pace: .steadyWalk,
                 isPublic: true,
-                startPoint: LocationData(
+                startingPoint: LocationData(
                     latitude: 43.6677, longitude: -79.3920,
                     name: "Queen's Park Legislative Building"),
                 endPoint: LocationData(
@@ -113,13 +113,13 @@ class Dummy {
             Event(
                 id: "6",
                 title: "Morning Jog by the CN Tower",
-                image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
+                imageId: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(-3600 * 24),
                 detail:
                     "An early morning jog to beat the crowds and see the city wake up.",
                 pace: .lightJog,
                 isPublic: false,
-                startPoint: LocationData(
+                startingPoint: LocationData(
                     latitude: 43.6426, longitude: -79.3871,
                     name: "Base of the CN Tower"),
                 endPoint: LocationData(

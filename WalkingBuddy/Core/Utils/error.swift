@@ -11,7 +11,7 @@ enum ApiError: Error, LocalizedError {
     case unauthorized
     case notFound
     case invalidData
-    case decodingFailed
+    case decodingFailed(Error)
     case serverError(String)
     case unknown(Error)
     case userNotfound
@@ -24,7 +24,7 @@ enum ApiError: Error, LocalizedError {
             return "The requested resource was not found."
         case .invalidData:
             return "Invalid data received from server."
-        case .decodingFailed:
+        case .decodingFailed(let error):
             return "Failed to decode server response."
         case .serverError(let message):
             return message

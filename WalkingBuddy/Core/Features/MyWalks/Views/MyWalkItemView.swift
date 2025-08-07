@@ -24,7 +24,7 @@ struct MyWalkItemView: View {
             }
             Spacer()
             AppNetworkImageView(
-                imageUrl: walk.image,
+                imageUrl: walk.imageId,
                 size: CGSize(width: 150, height: 80)
             )
 

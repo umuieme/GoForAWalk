@@ -13,7 +13,7 @@ struct WalkDetailScreen: View {
         GeometryReader { reader in
             VStack(alignment: .leading, spacing: 8) {
                 AppNetworkImageView(
-                    imageUrl: walk.image,
+                    imageUrl: walk.imageId,
                     size: CGSize(width: reader.size.width, height: 300)
                 )
                 VStack (alignment: .leading){
@@ -26,7 +26,7 @@ struct WalkDetailScreen: View {
                     Text(walk.detail ?? "")
                         .padding(.top, 8)
                     Divider()
-                    Text("Starting at: \(walk.startPoint.name)")
+                    Text("Starting at: \(walk.startingPoint.name)")
                     Text("Ending at: \(walk.endPoint.name)")
 
                 }

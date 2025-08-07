@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct HomeTab: View {
+    
+    @StateObject var homeViewModel = HomeEventViewModel()
+    
     var body: some View {
-        List {
-            EventItem()
-            EventItem()
+        Group {
+            if homeViewModel.isLoading {
+                ProgressView("Loading events...")
+                    .padding()
+            } else if homeViewModel.events.isEmpty {
+                Text("No events found.")
+                    .padding()
+            } else {
+                List(homeViewModel.events) { event in
+                    EventItem(event: event)
+                }
+            }
+            
         }
     }
 }

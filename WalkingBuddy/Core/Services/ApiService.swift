@@ -11,6 +11,7 @@ import UIKit
 class ApiService {
 
     static let shared = ApiService()
+    static let remoteUrl = "https://cloud.appwrite.io/v1"
 
     private let client: Client
     private let account: Account
@@ -19,15 +20,9 @@ class ApiService {
     private var user: UserInfo?
 
     init() {
-        //           let config = AppwriteSDK.loadConfig()
-
-        //           self.APPWRITE_PROJECT_ID = config.projectId
-        //           self.APPWRITE_PROJECT_NAME = config.projectName
-        //           self.APPWRITE_PUBLIC_ENDPOINT = config.endpoint
-
         client = Client()
             .setProject(Secrets.projectID)
-            .setEndpoint("https://cloud.appwrite.io/v1")
+            .setEndpoint(ApiService.remoteUrl)
 
         account = Account(client)
         databases = Databases(client)
@@ -79,6 +74,7 @@ class ApiService {
             collectionId: Secrets.userCollectionID,
                     documentId: user.id,
                     data: [
+                        "id": user.id,
                         "firstName": user.firstName,
                         "lastName": user.lastName,
                         "email": user.email
@@ -97,6 +93,7 @@ class ApiService {
         )
         return user!
     }
+    
 
     func uploadImage(image: UIImage) async throws -> String {
         guard
@@ -118,7 +115,8 @@ class ApiService {
                         imageData,
                         filename: "\(ID.unique()).jpeg",
                         mimeType: "image/jpeg"
-                    )
+                    ),
+                permissions: ["read('any')"]
 
             )
             return file.id
@@ -156,13 +154,14 @@ class ApiService {
             "longitude": destination.longitude,
             "name": destination.name,
         ]
-
+        let id = ID.unique()
         // 3. Create the event with nested relationship data
         try await databases.createDocument(
             databaseId: Secrets.databaseID,
             collectionId: Secrets.eventCollectionID,
-            documentId: ID.unique(),
+            documentId: id,
             data: [
+                "id:": id,
                 "title": title,
                 "detail": detail,
                 "startDate": ISO8601DateFormatter().string(from: startDate),
@@ -177,7 +176,6 @@ class ApiService {
     }
 
     func getSuggestedEvents() async throws -> [Event] {
-
         guard let user = user else {
             throw ApiError.userNotfound
         }
@@ -187,18 +185,31 @@ class ApiService {
             collectionId: Secrets.eventCollectionID,
             queries: [
                 Query.equal("isPublic", value: true),
-                Query.notEqual("userId", value: user.id),
+                Query.notEqual("createdBy", value: user.id),
             ]
         )
 
-        let events: [Event] = result.documents.compactMap { doc in
+        let events: [Event] = try result.documents.compactMap { doc in
             do {
-                let jsonData = try JSONSerialization.data(
-                    withJSONObject: doc.data)
-                return try JSONDecoder().decode(Event.self, from: jsonData)
+                print("Decoding document: \(doc.data)")
+                let data = try JSONEncoder().encode(doc.data)
+                let decoder = JSONDecoder()
+                let isoFormatter = ISO8601DateFormatter()
+                    isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+                    decoder.dateDecodingStrategy = .custom { decoder in
+                        let container = try decoder.singleValueContainer()
+                        let dateString = try container.decode(String.self)
+                        if let date = isoFormatter.date(from: dateString) {
+                            return date
+                        }
+                        throw DecodingError.dataCorruptedError(in: container,
+                            debugDescription: "Invalid date format: \(dateString)")
+                    }
+                return try decoder.decode(Event.self, from: data)
             } catch {
                 print("Decoding error: \(error)")
-                return nil
+                throw ApiError.decodingFailed(error)
             }
         }
 
