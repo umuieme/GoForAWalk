@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>APPWRITE_PROJECT_ID</key>
+	<string>$(APPWRITE_PROJECT_ID)</string>
+	<key>BUCKET_ID</key>
+	<string>$(BUCKET_ID)</string>
+	<key>DATABASE_ID</key>
+	<string>$(DATABASE_ID)</string>
+	<key>EVENT_COLLECTION_ID</key>
+	<string>$(EVENT_COLLECTION_ID)</string>
+	<key>LOCATION_COLLECTION_ID</key>
+	<string>$(LOCATION_COLLECTION_ID)</string>
+	<key>REQUESTS_COLLECTION_ID</key>
+	<string>$(REQUESTS_COLLECTION_ID)</string>
+</dict>
+</plist>

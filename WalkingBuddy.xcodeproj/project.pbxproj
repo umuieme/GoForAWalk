@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF4F16FC2E282E1B005CE5A0 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = AF4F16FB2E282E1B005CE5A0 /* Appwrite */; };
+		AF80D8F82E45350C00FBF390 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AF80D8F72E45350700FBF390 /* .gitignore */; };
 		AFFC459D2E24B9EE00011BCD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AFFC459C2E24B9EE00011BCD /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF80D8F72E45350700FBF390 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AF824B212E04C0D60088838F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		AFC94B832E021706009EA8AD /* WalkingBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -20,6 +23,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Core/Extensions/Readme.md,
+				Info.plist,
 			);
 			target = AFC94B822E021706009EA8AD /* WalkingBuddy */;
 		};
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF4F16FC2E282E1B005CE5A0 /* Appwrite in Frameworks */,
 				AFFC459D2E24B9EE00011BCD /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +56,7 @@
 		AFC94B7A2E021706009EA8AD = {
 			isa = PBXGroup;
 			children = (
+				AF80D8F72E45350700FBF390 /* .gitignore */,
 				AF824B212E04C0D60088838F /* Readme.md */,
 				AFC94B852E021706009EA8AD /* WalkingBuddy */,
 				AFC94B842E021706009EA8AD /* Products */,
@@ -86,6 +92,7 @@
 			name = WalkingBuddy;
 			packageProductDependencies = (
 				AFFC459C2E24B9EE00011BCD /* Kingfisher */,
+				AF4F16FB2E282E1B005CE5A0 /* Appwrite */,
 			);
 			productName = WalkingBuddy;
 			productReference = AFC94B832E021706009EA8AD /* WalkingBuddy.app */;
@@ -117,6 +124,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				AFFC459B2E24B9EE00011BCD /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				AF4F16FA2E282E1B005CE5A0 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AFC94B842E021706009EA8AD /* Products */;
@@ -133,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF80D8F82E45350C00FBF390 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +160,8 @@
 /* Begin XCBuildConfiguration section */
 		AFC94B8F2E021707009EA8AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = AFC94B852E021706009EA8AD /* WalkingBuddy */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -214,6 +225,8 @@
 		};
 		AFC94B902E021707009EA8AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = AFC94B852E021706009EA8AD /* WalkingBuddy */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -270,6 +283,8 @@
 		};
 		AFC94B922E021707009EA8AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = AFC94B852E021706009EA8AD /* WalkingBuddy */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -279,6 +294,7 @@
 				DEVELOPMENT_TEAM = SCAN67V3XX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalkingBuddy/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Capture image from camera for profile and events";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Pick image from gallery for profile and event";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -301,6 +317,8 @@
 		};
 		AFC94B932E021707009EA8AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = AFC94B852E021706009EA8AD /* WalkingBuddy */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +328,7 @@
 				DEVELOPMENT_TEAM = SCAN67V3XX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalkingBuddy/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Capture image from camera for profile and events";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Pick image from gallery for profile and event";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -354,6 +373,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AF4F16FA2E282E1B005CE5A0 /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appwrite/sdk-for-apple";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.1.1;
+			};
+		};
 		AFFC459B2E24B9EE00011BCD /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -365,6 +392,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AF4F16FB2E282E1B005CE5A0 /* Appwrite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF4F16FA2E282E1B005CE5A0 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
+			productName = Appwrite;
+		};
 		AFFC459C2E24B9EE00011BCD /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AFFC459B2E24B9EE00011BCD /* XCRemoteSwiftPackageReference "Kingfisher" */;

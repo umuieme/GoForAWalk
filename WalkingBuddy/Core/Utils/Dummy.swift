@@ -9,10 +9,10 @@ import Foundation
 
 class Dummy {
     
-    static func users() -> [User] {
+    static func users() -> [UserInfo] {
         return [
-            User(name: "Umesh Basnet", email: "test@test.com"),
-            User(name: "John Doe", email: "john@doe.com"),
+            UserInfo(id: "1", name: "Umesh Basnet", email: "test@test.com"),
+            UserInfo(id: "2", name: "John Doe", email: "john@doe.com"),
         ]
     }
 

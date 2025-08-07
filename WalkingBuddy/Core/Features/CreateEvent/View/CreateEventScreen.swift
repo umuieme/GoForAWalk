@@ -72,10 +72,19 @@ struct CreateEventScreen: View {
 
                 PaceSelector(selectedPace: $createEventViewModel.pace)
 
-                PrimaryButton(title: "Create Event") {
-                    dismiss()
-                }
-                .padding(.top)
+               
+                PrimaryButton(
+                    title: "Create Event",
+                    isLoading: createEventViewModel
+                        .isSaving) {
+                            Task {
+                                await createEventViewModel.createEvent()
+                                if(createEventViewModel.errorMessage == nil){
+                                    dismiss()
+                                }
+                            }
+                    }
+                
             }
             .padding()
         }
@@ -84,7 +93,21 @@ struct CreateEventScreen: View {
                 colors: [Color.blue.opacity(0.1), Color.white],
                 startPoint: .top, endPoint: .bottom)
         )
+        .alert("Error", isPresented: $createEventViewModel.showError) {
+            
+        } message: {
+            Text(createEventViewModel.errorMessage ?? "")
+                .font(.body)
+                .foregroundStyle(.red)
+        }
+        .onChange(of: createEventViewModel.isSuccess) { _, newValue in
+            if newValue {
+                dismiss()
+            }
+        }
+
     }
+    
 }
 
 #Preview {

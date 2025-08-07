@@ -15,9 +15,10 @@ enum AuthState {
     case dashboard
 }
 
+@MainActor
 class AuthViewModel: ObservableObject {
 
-    @Published var authState: AuthState = .login
+    @Published var authState: AuthState = .uninitialized
 
     func onLoginSuccess() {
         authState = .dashboard
@@ -32,7 +33,18 @@ class AuthViewModel: ObservableObject {
     }
 
     func onRegisterSuccess() {
-        authState = .profileSetup
+        authState = .dashboard
     }
+    
+    func checkAuthStatus() {
+           Task {
+               do {
+                   _ = try await ApiService.shared.getCurrentSession()
+                   authState = .dashboard
+               } catch {
+                   authState = .login
+               }
+           }
+       }
 
 }
