@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@MainActor
 class RegisterViewModel: ObservableObject {
     var authViewModel: AuthViewModel?
 
@@ -22,6 +22,7 @@ class RegisterViewModel: ObservableObject {
     @Published var emailError = ""
     @Published var passwordError = ""
     @Published var confirmPasswordError = ""
+    @Published var errorMessage: String?
 
     @Published var showError = false
 
@@ -67,7 +68,23 @@ class RegisterViewModel: ObservableObject {
         guard !showError else { return }
 
         // If everything is valid, proceed
-        authViewModel?.onRegisterSuccess()
+        Task {
+                    do {
+                        _ = try await ApiService.shared.registerUser(
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: email,
+                            password: password
+                        )
+
+                        authViewModel?.onRegisterSuccess()
+
+                    } catch {
+                        print("Error registering user: \(error.localizedDescription)")
+                        self.errorMessage = error.localizedDescription
+                        self.showError = true
+                    }
+                }
     }
     
 

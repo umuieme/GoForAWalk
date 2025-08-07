@@ -9,11 +9,20 @@ import SwiftUI
 
 struct PrimaryButton: View {
     let title: String
+    var isLoading: Bool = false
     let action: () -> Void
     var body: some View {
-        Button(action: action) {
-            Text(title)
-                .frame(maxWidth: .infinity)
+        Button{
+            if !(isLoading) {
+                action()
+            }
+        } label: {
+            if isLoading {
+                ProgressView()
+            } else {
+                Text(title)
+                    .frame(maxWidth: .infinity)
+            }
 
         }
         .buttonStyle(.borderedProminent)
@@ -23,7 +32,7 @@ struct PrimaryButton: View {
 }
 
 #Preview {
-    PrimaryButton(title: "Save") {
+    PrimaryButton(title: "Save", isLoading: false) {
 
     }
 }

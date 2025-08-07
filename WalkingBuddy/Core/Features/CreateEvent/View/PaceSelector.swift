@@ -47,7 +47,7 @@ struct PaceButton: View {
             VStack(spacing: 8) {
                 Image(systemName: pace.icon)
                     .font(.title2)
-                Text(pace.rawValue)
+                Text(pace.label)
                     .fontWeight(.medium)
             }
             .padding(.vertical, 12)

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class LoginViewModel: ObservableObject {
 
     var authViewModel: AuthViewModel?
@@ -15,9 +16,10 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var emailError: String = ""
     @Published var passwordError: String = ""
+
     @Published var showError = false
 
-    func loginWithEmailPassword() {
+    func loginWithEmailPassword() async {
         showError = false
         emailError = ""
         passwordError = ""
@@ -42,7 +44,14 @@ class LoginViewModel: ObservableObject {
         guard !showError else {
             return
         }
+        do  {
+            
+            let response = try await ApiService.shared.loginWithEmail(email: email, password: password)
+            
+            authViewModel?.onLoginSuccess()
 
-        authViewModel?.onLoginSuccess()
+        } catch let error{
+            print("Error: \(error)")
+        }
     }
 }

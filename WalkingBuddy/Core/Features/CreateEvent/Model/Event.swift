@@ -17,7 +17,7 @@ struct Event : Identifiable, Hashable {
     let isPublic: Bool
     let startPoint: LocationData
     let endPoint: LocationData
-    let createdBy: User
+    let createdBy: UserInfo
     
     func getUserName() -> String {
         return createdBy.name

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var authViewModel = AuthViewModel()
+  
     var body: some View {
         
         Group {
@@ -16,7 +17,7 @@ struct ContentView: View {
             case .uninitialized:
                 SplashScreen()
             case .login:
-                HomeScreen()
+                LoginScreen()
             case .register:
                 RegisterScreen()
             case .profileSetup:
@@ -27,6 +28,9 @@ struct ContentView: View {
         
         }
         .environmentObject(authViewModel)
+        .onAppear(){
+            authViewModel.checkAuthStatus()
+        }
         
     }
 }

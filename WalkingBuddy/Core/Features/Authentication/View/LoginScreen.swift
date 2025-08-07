@@ -35,7 +35,9 @@ struct LoginScreen: View {
             Text("Forget Password?")
                 .foregroundStyle(.blue)
             PrimaryButton(title: "Login") {
-                loginViewModel.loginWithEmailPassword()
+                Task {
+                    await loginViewModel.loginWithEmailPassword()
+                }
             }
             Button("Create new account") {
                 authViewModel.onShowRegsitraiton()

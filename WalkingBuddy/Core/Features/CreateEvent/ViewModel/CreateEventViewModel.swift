@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 
+@MainActor
 class CreateEventViewModel : ObservableObject {
     
     @Published var title = ""
@@ -27,7 +28,10 @@ class CreateEventViewModel : ObservableObject {
     @Published var paceError : String?
     @Published var startPointError : String?
     @Published var destinationError : String?
-    
+    @Published var isSaving = false
+    @Published var errorMessage : String?
+    @Published var showError = false
+    @Published var isSuccess = false
     
     
     func validate() -> Bool {
@@ -54,6 +58,31 @@ class CreateEventViewModel : ObservableObject {
         }
         return hasError
     }
+    
+    func createEvent() async {
+        errorMessage = nil
+        guard !validate() else {
+            errorMessage = "Please fill all required fields"
+            return;
+        }
+        defer {
+            isSaving = false
+        }
+        do {
+            isSaving = true
+            try await ApiService.shared
+                .createEvent(
+                    title: title, detail: detail, startDate: startDate, pace: pace!, isPublic: isPublic, startPoint: startPoint!, destination: destination!, image: image!
+                )
+            isSuccess = true
+        }catch {
+            print("Error creating event : \(error.localizedDescription)")
+            errorMessage = error.localizedDescription
+        }
+        
+    }
+    
+    
 
 }
 

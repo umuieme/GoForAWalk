@@ -8,14 +8,25 @@
 import SwiftUICore
 
 enum WalkingPace: String, CaseIterable, Identifiable {
-    case casualStroll = "Casual Stroll"
-    case steadyWalk = "Steady Walks"
-    case powerWalk = "Power Walk"
-    case lightJog = "Light Jog"
-    case run = "Pace Run"
+    case casualStroll
+    case steadyWalk
+    case powerWalk
+    case lightJog
+    case run
 
     var id: Self { self }
+    
+    var label: String {
+            switch self {
+            case .casualStroll: return "Casual Stroll"
+            case .steadyWalk: return "Steady Walks"
+            case .powerWalk: return "Power Walk"
+            case .lightJog: return "Light Jog"
+            case .run: return "Pace Run"
+            }
+        }
 
+    
     var icon: String {
         switch self {
         case .casualStroll:
