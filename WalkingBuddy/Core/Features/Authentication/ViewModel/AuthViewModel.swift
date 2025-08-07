@@ -27,24 +27,35 @@ class AuthViewModel: ObservableObject {
     func onShowRegsitraiton() {
         authState = .register
     }
-    
-    func onShowLogin(){
+
+    func onShowLogin() {
         authState = .login
     }
 
     func onRegisterSuccess() {
         authState = .dashboard
     }
-    
+
     func checkAuthStatus() {
-           Task {
-               do {
-                   _ = try await ApiService.shared.getCurrentSession()
-                   authState = .dashboard
-               } catch {
-                   authState = .login
-               }
-           }
-       }
+        Task {
+            do {
+                _ = try await ApiService.shared.getCurrentSession()
+                authState = .dashboard
+            } catch {
+                authState = .login
+            }
+        }
+    }
+    
+    func logout() {
+        Task {
+            do {
+                try await ApiService.shared.logout()
+                authState = .login
+            } catch {
+                print("Logout failed: \(error)")
+            }
+        }
+    }
 
 }

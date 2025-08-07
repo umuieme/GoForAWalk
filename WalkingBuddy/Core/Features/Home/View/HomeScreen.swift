@@ -24,7 +24,7 @@ struct HomeScreen: View {
                     case .message:
                         Text("Message")
                     case .profile:
-                        Text("Profile")
+                        ProfileTab()
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

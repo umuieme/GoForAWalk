@@ -14,5 +14,7 @@
 	<string>$(LOCATION_COLLECTION_ID)</string>
 	<key>REQUESTS_COLLECTION_ID</key>
 	<string>$(REQUESTS_COLLECTION_ID)</string>
+	<key>USER_COLLECTION_ID</key>
+	<string>$(USER_COLLECTION_ID)</string>
 </dict>
 </plist>

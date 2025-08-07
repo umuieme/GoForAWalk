@@ -53,4 +53,11 @@ struct Secrets {
         }
         return id
     }()
+    
+    static let userCollectionID: String = {
+        guard let id = Bundle.main.infoDictionary?["USER_COLLECTION_ID"] as? String else {
+            fatalError("USERS_COLLECTION_ID not found in Info.plist. Please ensure it's set in your .xcconfig and linked to your target's Info.plist.")
+        }
+        return id
+    }()
 }

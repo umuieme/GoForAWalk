@@ -39,6 +39,7 @@ struct AppTextField: View {
                     TextField(placeholder ?? "", text: $text)
                         .padding(.vertical, 12)
                         .font(.body)
+                        
                 }
             }
             .padding(.horizontal)

@@ -7,7 +7,7 @@
 
 import SwiftUICore
 
-enum WalkingPace: String, CaseIterable, Identifiable {
+enum WalkingPace: String, CaseIterable, Identifiable, Decodable {
     case casualStroll
     case steadyWalk
     case powerWalk

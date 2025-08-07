@@ -11,8 +11,8 @@ class Dummy {
     
     static func users() -> [UserInfo] {
         return [
-            UserInfo(id: "1", name: "Umesh Basnet", email: "test@test.com"),
-            UserInfo(id: "2", name: "John Doe", email: "john@doe.com"),
+            UserInfo(id: "1", firstName: "User1", lastName: "Test", email: "test@test.com"),
+            UserInfo(id: "2", firstName: "john" , lastName: "Doe" , email: "john@doe.com"),
         ]
     }
 
@@ -23,6 +23,7 @@ class Dummy {
 
             // --- UPCOMING EVENTS ---
             Event(
+                id: "1",
                 title: "High Park Sunset Stroll",
                 image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(3600 * 8),  // Today at ~8:26 AM
@@ -39,6 +40,7 @@ class Dummy {
                 createdBy: users.randomElement()!
             ),
             Event(
+                id: "2",
                 title: "Waterfront Fitness Walk",
                 image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(3600 * 24 * 2),  // In 2 days
@@ -54,6 +56,7 @@ class Dummy {
                 createdBy: users.randomElement()!
             ),
             Event(
+                id: "3",
                 title: "Don Valley Trail Run",
                 image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(3600 * 24 * 7),
@@ -73,6 +76,7 @@ class Dummy {
 
             // --- PAST EVENTS ---
             Event(
+                id: "4",
                 title: "Riverdale Park Dog Walk",
                 image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(-3600 * 24 * 3),  // 3 days ago
@@ -90,6 +94,7 @@ class Dummy {
 
             ),
             Event(
+                id: "5",
                 title: "Urban Exploration: Queen's Park",
                 image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(-3600 * 24 * 10),
@@ -106,6 +111,7 @@ class Dummy {
 
             ),
             Event(
+                id: "6",
                 title: "Morning Jog by the CN Tower",
                 image: "https://ontariohiking.com/wp-content/uploads/2020/05/Toronto-Hiking-Trails-Title.jpg",
                 startDate: Date().addingTimeInterval(-3600 * 24),

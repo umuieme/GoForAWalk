@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Event : Identifiable, Hashable {
-    let id = UUID()
+struct Event : Identifiable, Hashable, Decodable {
+    let id : String
     let title: String
     let image: String
     let startDate: Date
@@ -20,6 +20,6 @@ struct Event : Identifiable, Hashable {
     let createdBy: UserInfo
     
     func getUserName() -> String {
-        return createdBy.name
+        return createdBy.firstName
     }
 }

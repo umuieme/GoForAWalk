@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct LocationData : Identifiable, Hashable {
+struct LocationData : Identifiable, Hashable, Decodable {
     let id : UUID = UUID()
 
     let latitude: Double
