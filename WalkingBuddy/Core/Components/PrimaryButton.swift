@@ -22,6 +22,7 @@ struct PrimaryButton: View {
             } else {
                 Text(title)
                     .frame(maxWidth: .infinity)
+                    .frame(height: 24)
             }
 
         }

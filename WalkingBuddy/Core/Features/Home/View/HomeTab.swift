@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeTab: View {
-    
+
     @StateObject var homeViewModel = HomeEventViewModel()
-    
+    @State private var selectedEvent: Event?
     var body: some View {
         Group {
             if homeViewModel.isLoading {
@@ -21,10 +21,19 @@ struct HomeTab: View {
                     .padding()
             } else {
                 List(homeViewModel.events) { event in
-                    EventItem(event: event)
+                    
+                        EventItem(event: event)
+                        .onTapGesture {
+                            selectedEvent = event
+                        }
+                    
+
                 }
             }
-            
+
+        }
+        .navigationDestination(item: $selectedEvent) { event in
+            WalkDetailScreen(event: event)
         }
     }
 }

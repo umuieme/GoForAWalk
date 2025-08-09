@@ -164,5 +164,147 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFC1C245-AE1A-4465-8152-1F07DF065FB5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkingBuddy/Core/Features/WalkDetail/ViewModel/WalkDetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "requestToJoin(event:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FA38B11-F5DE-4690-AB1A-198B7D3CBA96"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkingBuddy/Core/Services/ApiService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "requestToJoinEvent(_:requestedTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D20B9184-DF98-4F5D-BAD2-AB2C4DCFED49"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkingBuddy/Core/Features/WalkDetail/ViewModel/WalkDetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "getJoinRequestStatus(event:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9C2A250-F332-46FE-A14C-BB2895A615A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkingBuddy/Core/Utils/appwrite_extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "toObject(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E49607FC-6109-4D91-B71C-E2C22D357974"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkingBuddy/Core/Utils/appwrite_extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "toObject(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E7A3FCF-9D96-48C5-BEFA-FC9A5BEC6A38"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkingBuddy/Core/Services/ApiService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "createEvent(title:detail:startDate:pace:isPublic:startPoint:destination:image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4E032D3-64BB-4750-B11E-339FF5846B37"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData2/WalkingBuddy-dtaexgykpqxgiffpzllbvzzybuch/SourcePackages/checkouts/sdk-for-apple/Sources/Appwrite/Services/Databases.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "createDocument(databaseId:collectionId:documentId:data:permissions:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F4E032D3-64BB-4750-B11E-339FF5846B37 - d6b226b2e053432a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Appwrite.Databases.createDocument(databaseId: Swift.String, collectionId: Swift.String, documentId: Swift.String, data: Any, permissions: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;) async throws -&gt; AppwriteModels.Document&lt;Swift.Dictionary&lt;Swift.String, JSONCodable.AnyCodable&gt;&gt;"
+                  moduleName = "WalkingBuddy.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/umeshbasnet/Library/Developer/Xcode/DerivedData2/WalkingBuddy-dtaexgykpqxgiffpzllbvzzybuch/SourcePackages/checkouts/sdk-for-apple/Sources/Appwrite/Services/Databases.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143">
+               </Location>
+               <Location
+                  uuid = "F4E032D3-64BB-4750-B11E-339FF5846B37 - 5d16ab8a54230bdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for Appwrite.Databases.createDocument(databaseId: Swift.String, collectionId: Swift.String, documentId: Swift.String, data: Any, permissions: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;) async throws -&gt; AppwriteModels.Document&lt;Swift.Dictionary&lt;Swift.String, JSONCodable.AnyCodable&gt;&gt;"
+                  moduleName = "WalkingBuddy.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/umeshbasnet/Library/Developer/Xcode/DerivedData2/WalkingBuddy-dtaexgykpqxgiffpzllbvzzybuch/SourcePackages/checkouts/sdk-for-apple/Sources/Appwrite/Services/Databases.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

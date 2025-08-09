@@ -15,18 +15,17 @@ enum WalkingPace: String, CaseIterable, Identifiable, Decodable {
     case run
 
     var id: Self { self }
-    
-    var label: String {
-            switch self {
-            case .casualStroll: return "Casual Stroll"
-            case .steadyWalk: return "Steady Walks"
-            case .powerWalk: return "Power Walk"
-            case .lightJog: return "Light Jog"
-            case .run: return "Pace Run"
-            }
-        }
 
-    
+    var label: String {
+        switch self {
+        case .casualStroll: return "Casual Stroll"
+        case .steadyWalk: return "Steady Walks"
+        case .powerWalk: return "Power Walk"
+        case .lightJog: return "Light Jog"
+        case .run: return "Pace Run"
+        }
+    }
+
     var icon: String {
         switch self {
         case .casualStroll:
@@ -64,8 +63,8 @@ enum Tab: String, CaseIterable {
     case createWalk = "createWalk"
     case message = "message"
     case profile = "profile"
-    
-    var icon : String {
+
+    var icon: String {
         switch self {
         case .home:
             return "house"
@@ -85,4 +84,20 @@ enum MyWalkType: String, CaseIterable {
     case upcoming = "Upcoming"
     case pending = "Pending"
     case past = "Past"
+}
+
+enum RequestStatus: String, CaseIterable, Identifiable, Decodable {
+    case pending
+    case accepted
+    case declined
+
+    var id: Self { self }
+
+    var label: String {
+        switch self {
+        case .pending: return "Pending"
+        case .accepted: return "Accepted"
+        case .declined: return "Declined"
+        }
+    }
 }

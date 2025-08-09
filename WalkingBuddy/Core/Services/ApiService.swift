@@ -37,7 +37,7 @@ class ApiService {
         )
         return session
     }
-    
+
     func logout() async throws {
         try await account.deleteSession(sessionId: "current")
     }
@@ -53,7 +53,7 @@ class ApiService {
             password: password,
             name: fullName
         )
-        
+
         try await createUser(
             user: UserInfo(
                 id: userId,
@@ -64,23 +64,23 @@ class ApiService {
         )
 
         let session = try await loginWithEmail(email: email, password: password)
-         _ = try await getCurrentSession()
+        _ = try await getCurrentSession()
         return session
     }
-    
+
     func createUser(user: UserInfo) async throws {
         _ = try await databases.createDocument(
             databaseId: Secrets.databaseID,
             collectionId: Secrets.userCollectionID,
-                    documentId: user.id,
-                    data: [
-                        "id": user.id,
-                        "firstName": user.firstName,
-                        "lastName": user.lastName,
-                        "email": user.email
-                    ]
-                )
-            
+            documentId: user.id,
+            data: [
+                "id": user.id,
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "email": user.email,
+            ]
+        )
+
     }
 
     func getCurrentSession() async throws -> UserInfo {
@@ -93,7 +93,6 @@ class ApiService {
         )
         return user!
     }
-    
 
     func uploadImage(image: UIImage) async throws -> String {
         guard
@@ -116,7 +115,7 @@ class ApiService {
                         filename: "\(ID.unique()).jpeg",
                         mimeType: "image/jpeg"
                     ),
-                permissions: ["read('any')"]
+                permissions: [Permission.read(Role.any()), Permission.write(Role.any())]
 
             )
             return file.id
@@ -161,7 +160,7 @@ class ApiService {
             collectionId: Secrets.eventCollectionID,
             documentId: id,
             data: [
-                "id:": id,
+                "id": id,
                 "title": title,
                 "detail": detail,
                 "startDate": ISO8601DateFormatter().string(from: startDate),
@@ -192,21 +191,26 @@ class ApiService {
         let events: [Event] = try result.documents.compactMap { doc in
             do {
                 print("Decoding document: \(doc.data)")
-                let data = try JSONEncoder().encode(doc.data)
-                let decoder = JSONDecoder()
-                let isoFormatter = ISO8601DateFormatter()
-                    isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-
-                    decoder.dateDecodingStrategy = .custom { decoder in
-                        let container = try decoder.singleValueContainer()
-                        let dateString = try container.decode(String.self)
-                        if let date = isoFormatter.date(from: dateString) {
-                            return date
-                        }
-                        throw DecodingError.dataCorruptedError(in: container,
-                            debugDescription: "Invalid date format: \(dateString)")
-                    }
-                return try decoder.decode(Event.self, from: data)
+//                let data = try JSONEncoder().encode(doc.data)
+//                let decoder = JSONDecoder()
+//                let isoFormatter = ISO8601DateFormatter()
+//                isoFormatter.formatOptions = [
+//                    .withInternetDateTime, .withFractionalSeconds,
+//                ]
+//
+//                decoder.dateDecodingStrategy = .custom { decoder in
+//                    let container = try decoder.singleValueContainer()
+//                    let dateString = try container.decode(String.self)
+//                    if let date = isoFormatter.date(from: dateString) {
+//                        return date
+//                    }
+//                    throw DecodingError.dataCorruptedError(
+//                        in: container,
+//                        debugDescription: "Invalid date format: \(dateString)")
+//                }
+//                return try decoder.decode(Event.self, from: data)
+                
+                return try doc.toObject(Event.self)
             } catch {
                 print("Decoding error: \(error)")
                 throw ApiError.decodingFailed(error)
@@ -215,6 +219,55 @@ class ApiService {
 
         return events
 
+    }
+
+    func getRequestStatus(forEvent eventId: String) async throws -> JoinRequest?
+    {
+        guard let user = user else {
+            throw ApiError.userNotfound
+        }
+
+        let result = try await databases.listDocuments(
+            databaseId: Secrets.databaseID,
+            collectionId: Secrets.requestCollectionID,
+            queries: [
+                Query.equal("event", value: eventId),
+                Query.equal("requestedBy", value: user.id),
+
+            ])
+        
+        if result.documents.count > 0 {
+            return try result.documents.first!
+                .toObject(JoinRequest.self)
+        }
+        return nil
+
+    }
+
+    func requestToJoinEvent(_ eventId: String, requestedTo: String) async throws -> JoinRequest
+    {
+        guard let user = user else {
+            throw ApiError.userNotfound
+        }
+
+        let id = ID.unique()
+
+        let response = try await databases.createDocument(
+            databaseId: Secrets.databaseID,
+            collectionId: Secrets.requestCollectionID,
+            documentId: id,
+            data: [
+                "id": id,
+                "event": eventId,
+                "requestedTo": requestedTo,
+                "requestedBy": user.id,
+                "status": RequestStatus.pending.rawValue,
+            ]
+
+        )
+        
+        return try response.toObject(JoinRequest.self)
+        
     }
 
 }

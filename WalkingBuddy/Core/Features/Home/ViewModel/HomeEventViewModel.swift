@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class HomeEventViewModel: ObservableObject {
 
     @Published var events: [Event] = []

@@ -28,9 +28,11 @@ struct AppNetworkImageView: View {
                     
                 )
                 .resizable()
+                
                 .placeholder {
-                    ProgressView().tint(.white)
+                    ImageLoading(size: size?.width ?? 200)
                 }
+                
                 .cancelOnDisappear(true)
                 .aspectRatio(contentMode: .fill)
                 .frame(

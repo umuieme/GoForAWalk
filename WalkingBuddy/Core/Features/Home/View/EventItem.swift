@@ -11,16 +11,13 @@ struct EventItem: View {
     let event: Event
     var body: some View {
         HStack(alignment: .top, spacing: 4) {
-            AsyncImage(url: event.getImagePreviewUrl()) { image in
-                image.resizable()
-                    .frame(width: 150, height: 120)
-            } placeholder: {
-                ProgressView()
-            }
-            .frame(width: 150, height: 120)
+            
+            AppNetworkImageView(
+                imageUrl: event.getImagePreviewUrl(),
+                size: CGSize(width: 150, height: 120)
+            )
             .padding(.trailing, 4)
 
-            
             VStack(alignment: .leading, spacing: 4) {
                 Text(event.startDate.formatted(.dateTime.day().month().year()))
                     .font(.subheadline)
@@ -35,9 +32,12 @@ struct EventItem: View {
                 
             }
         }
+        
     }
 }
 
 #Preview {
     EventItem(event: Dummy.eventList().first!)
+    
 }
+    

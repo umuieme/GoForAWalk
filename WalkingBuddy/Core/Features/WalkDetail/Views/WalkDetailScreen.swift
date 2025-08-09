@@ -8,26 +8,91 @@
 import SwiftUI
 
 struct WalkDetailScreen: View {
-    let walk: Event
+    
+    @StateObject var viewModel = WalkDetailViewModel()
+    
+    let event: Event
     var body: some View {
         GeometryReader { reader in
             VStack(alignment: .leading, spacing: 8) {
                 AppNetworkImageView(
-                    imageUrl: walk.imageId,
+                    imageUrl: event.getImagePreviewUrl(),
                     size: CGSize(width: reader.size.width, height: 300)
                 )
-                VStack (alignment: .leading){
-                    Text(walk.title)
+                VStack(alignment: .leading) {
+
+                    Text(event.title)
                         .font(.title2)
                         .fontWeight(.bold)
-                    Text(walk.startDate.description)
-                        .foregroundColor(.secondary)
-                        .font(.caption)
-                    Text(walk.detail ?? "")
-                        .padding(.top, 8)
-                    Divider()
-                    Text("Starting at: \(walk.startingPoint.name)")
-                    Text("Ending at: \(walk.endPoint.name)")
+                        .padding(.horizontal)
+                        .padding(.top, 16)
+
+                    // Description
+                    if let detail = event.detail {
+                        Text(detail)
+                            .font(.body)
+                            .foregroundColor(.primary)
+                            .padding(.horizontal)
+                            .padding(.top, 4)
+                    }
+
+                    // Details section
+                    SectionHeader("Details")
+
+                    VStack(spacing: 0) {
+                        DetailRow(
+                            label: "Date",
+                            value: event.startDate.formatted(
+                                date: .long, time: .omitted))
+                        DetailRow(
+                            label: "Time",
+                            value: event.startDate.formatted(
+                                date: .omitted, time: .shortened))
+                        DetailRow(
+                            label: "Starting At",
+                            value: event.startingPoint.name)
+                        DetailRow(
+                            label: "Ending At",
+                            value: event.endPoint.name
+                        )
+                    }
+                    .padding(.horizontal)
+
+                    // Attendees
+                    //                                   SectionHeader("Attendees")
+
+                    // Join button
+                    //                    PrimaryButton(action: { /* join event */ }) {
+                    //                                       Text("Join")
+                    //                                           .font(.headline)
+                    //                                           .foregroundColor(.primary)
+                    //                                           .frame(maxWidth: .infinity)
+                    //                                           .frame(height: 48)
+                    //                                           .background(Color.blue.opacity(0.2))
+                    //                                           .cornerRadius(24)
+                    //                                   }
+                    //                                   .padding(.horizontal)
+                    //                                   .padding(.bottom, 16)
+
+                    if viewModel.joinRequest == nil {
+                        PrimaryButton(
+                            title: "Request to Join",
+                            isLoading: viewModel
+                                .isRequesting) {
+                                    Task {
+                                        await viewModel.requestToJoin(event: event)
+                                    }
+                                }
+                                .padding(.top, 16)
+                    } else if viewModel.joinRequest!.status == .pending {
+                    
+                        Text("Request Pending")
+                        .font(.title2)
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity)
+                            .frame(alignment: Alignment.center)
+                            .padding(.top, 16)
+                    }
 
                 }
                 .padding()
@@ -35,10 +100,53 @@ struct WalkDetailScreen: View {
             }
             .edgesIgnoringSafeArea(.top)
         }
+        .onAppear(){
+            Task {
+//                await viewModel.getJoinRequestStatus(event: event)
+            }
+        }
+        .alert("Error", isPresented: $viewModel.showError) {
+            
+            
+        }
+
+    }
+}
+
+struct SectionHeader: View {
+    let title: String
+    init(_ title: String) { self.title = title }
+    var body: some View {
+        Text(title)
+            .font(.headline)
+            .fontWeight(.bold)
+            .padding(.horizontal)
+            .padding(.top, 20)
+            .padding(.bottom, 4)
+    }
+}
+
+struct DetailRow: View {
+    let label: String
+    let value: String
+    var body: some View {
+        VStack(spacing: 4) {
+            Divider()
+            HStack {
+                Text(label)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text(value)
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
+            }
+            .padding(.vertical, 12)
+        }
         
     }
 }
 
 #Preview {
-    WalkDetailScreen(walk: Dummy.eventList()[0])
+    WalkDetailScreen(event: Dummy.eventList()[0])
 }

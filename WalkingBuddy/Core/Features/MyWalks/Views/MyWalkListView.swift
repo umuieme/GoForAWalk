@@ -37,7 +37,7 @@ struct MyWalkListView: View {
 
         }
         .navigationDestination(item: $selectedEvent) { walk in
-            WalkDetailScreen(walk: walk)
+            WalkDetailScreen(event: walk)
         }
     }
 }
